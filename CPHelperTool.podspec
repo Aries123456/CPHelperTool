@@ -13,5 +13,5 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "8.0"
   spec.source       = { :git => "https://github.com/Aries123456/CPHelperTool.git", :tag => "#{spec.version}" }
   spec.source_files  = "CPHelperTool", "CPHelperTool/**/*.{h,m}"
-  spec.public_header_files = "CPHelperTool/**/*.{h,m}"
+  # spec.public_header_files = "CPHelperTool/**/*.{h,m}"
 end
