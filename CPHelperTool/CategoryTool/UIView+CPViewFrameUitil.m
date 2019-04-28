@@ -1,0 +1,271 @@
+//
+//  UIView+CPViewFrameUitil.m
+//  CatPaw
+//
+//  Created by lk on 2017/6/19.
+//  Copyright © 2017年 lk. All rights reserved.
+//
+
+#import "UIView+CPViewFrameUitil.h"
+
+@implementation UIView (CPViewFrameUitil)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)CP_left {
+    return self.frame.origin.x;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_left:(CGFloat)CP_left {
+    CGRect frame = self.frame;
+    frame.origin.x = CP_left;
+    self.frame = frame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)CP_top {
+    return self.frame.origin.y;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_top:(CGFloat)y {
+    CGRect frame = self.frame;
+    frame.origin.y = y;
+    self.frame = frame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)CP_right {
+    return self.frame.origin.x + self.frame.size.width;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_right:(CGFloat)right {
+    CGRect frame = self.frame;
+    frame.origin.x = right - frame.size.width;
+    self.frame = frame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)CP_bottom {
+    return self.frame.origin.y + self.frame.size.height;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_bottom:(CGFloat)bottom {
+    CGRect frame = self.frame;
+    frame.origin.y = bottom - frame.size.height;
+    self.frame = frame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)centerX {
+    return self.center.x;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCenterX:(CGFloat)centerX {
+    self.center = CGPointMake(centerX, self.center.y);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)centerY {
+    return self.center.y;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCenterY:(CGFloat)centerY {
+    self.center = CGPointMake(self.center.x, centerY);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)CP_width {
+    return self.frame.size.width;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_width:(CGFloat)width {
+    CGRect frame = self.frame;
+    frame.size.width = width;
+    self.frame = frame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)CP_height {
+    return self.frame.size.height;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_height:(CGFloat)height {
+    CGRect frame = self.frame;
+    frame.size.height = height;
+    self.frame = frame;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGPoint)CP_origin {
+    return self.frame.origin;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_originX:(CGFloat)CP_originX
+{
+    CGRect frame = self.frame;
+    frame.origin.x = CP_originX;
+    self.frame = frame;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_originY:(CGFloat)CP_originY
+{
+    CGRect frame = self.frame;
+    frame.origin.y = CP_originY;
+    self.frame = frame;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_origin:(CGPoint)origin {
+    CGRect frame = self.frame;
+    frame.origin = origin;
+    self.frame = frame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGSize)CP_size {
+    return self.frame.size;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)CP_centerX {
+    return self.center.x;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_centerX:(CGFloat)centerX {
+    self.center = CGPointMake(centerX, self.center.y);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)CP_centerY {
+    return self.center.y;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_centerY:(CGFloat)centerY {
+    self.center = CGPointMake(self.center.x, centerY);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_size:(CGSize)size {
+    CGRect frame = self.frame;
+    frame.size = size;
+    self.frame = frame;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGPoint)CP_topRight
+{
+    return CGPointMake(self.frame.origin.x+self.frame.size.width,self.frame.origin.y);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_topRight:(CGPoint)CP_topRight
+{
+    CGRect frame = self.frame;
+    
+    CGFloat xdetal = CP_topRight.x - frame.origin.x - frame.size.width;
+    frame.origin.x = frame.origin.x + xdetal;
+    
+    frame.origin.y = CP_topRight.y;
+    
+    self.frame = frame;
+    
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGPoint)CP_bottomLeft
+{
+    return CGPointMake(self.frame.origin.x,self.frame.origin.y+self.frame.size.height);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_bottomLeft:(CGPoint)CP_bottomLeft
+{
+    CGRect frame = self.frame;
+    
+    CGFloat ydetal = CP_bottomLeft.y - frame.origin.y - frame.size.height;
+    frame.origin.y = frame.origin.y + ydetal;
+    
+    frame.origin.x = CP_bottomLeft.x;
+    
+    self.frame = frame;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGPoint)CP_bottomRight
+{
+    return CGPointMake(self.frame.origin.x+self.frame.size.width,self.frame.origin.y+self.frame.size.height);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCP_bottomRight:(CGPoint)CP_bottomRight
+{
+    CGRect frame = self.frame;
+    
+    CGFloat xdetal = CP_bottomRight.x - frame.origin.x - frame.size.width;
+    frame.origin.x = frame.origin.x + xdetal;
+    
+    CGFloat ydetal = CP_bottomRight.y - frame.origin.y - frame.size.height;
+    frame.origin.y = frame.origin.y + ydetal;
+    
+    self.frame = frame;
+}
+
+- (CGFloat)CP_rightToSuper
+{
+    return self.superview.bounds.size.width - self.frame.size.width - self.frame.origin.x;
+}
+
+- (void)setCP_rightToSuper:(CGFloat)rightToSuper
+{
+    CGRect frame = self.frame;
+    
+    frame.origin.x =  self.superview.bounds.size.width - self.frame.size.width  - rightToSuper,
+    self.frame = frame;
+}
+
+- (CGFloat)CP_bottomToSuper
+{
+    return self.superview.bounds.size.height - self.frame.size.height - self.frame.origin.y;
+}
+
+- (void)setCP_bottomToSuper:(CGFloat)bottomToSuper
+{
+    CGRect frame = self.frame;
+    
+    frame.origin.y =  self.superview.bounds.size.height - self.frame.size.height  - bottomToSuper,
+    self.frame = frame;
+}
+
+@end
