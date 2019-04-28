@@ -100,4 +100,10 @@
 //字符串去除小数点
 + (NSString *)filterDecimalPoint:(NSString *)pointString;
 
+/**十进制转十六进制*/
++(NSString *)hexadecimalFromDecimalSystem:(NSString *)decimalSystem;
+
+/**十六进制转十进制*/
++ (NSString *)decimalSystemFromHexadecimal:(NSString *)hexadecimal;
+
 @end

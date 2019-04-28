@@ -223,3 +223,13 @@
  *  字符串去除小数点
  */
 #define CPStringFilterDecimalPoint(string) [CPStringUitil filterDecimalPoint:string]
+
+/**
+ *  十进制转十六进制
+ */
+#define CPToHex(decimalSystem) [CPStringUitil hexadecimalFromDecimalSystem:decimalSystem]
+
+/**
+ *  十六进制转十进制
+ */
+#define CPToNum10(hexadecimal) [CPStringUitil decimalSystemFromHexadecimal:hexadecimal]

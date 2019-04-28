@@ -518,4 +518,23 @@
     return pointString;
 }
 
++ (NSString *)hexadecimalFromDecimalSystem:(NSString *)decimalSystem
+{
+    char hexChar[6];
+    sprintf(hexChar, "%lx", (long)decimalSystem.integerValue);
+    NSString *hexString = [NSString stringWithCString:hexChar encoding:NSUTF8StringEncoding];
+    if (hexString.length < 2) {
+        hexString = [NSString stringWithFormat:@"0%@",hexString];
+    }
+    return hexString.uppercaseString;
+}
+
++ (NSString *)decimalSystemFromHexadecimal:(NSString *)hexadecimal
+{
+    const char *hexChar = [hexadecimal cStringUsingEncoding:NSUTF8StringEncoding];
+    int hexNumber;
+    sscanf(hexChar, "%x", &hexNumber);
+    return [NSString stringWithFormat:@"%d",hexNumber];
+}
+
 @end
