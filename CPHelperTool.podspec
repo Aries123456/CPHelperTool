@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "CPHelperTool"
-  spec.version      = "1.0.2"
+  spec.version      = "1.0.3"
   spec.summary      = "基础工具类"
   spec.description  = <<-DESC
   "基础工具类"
