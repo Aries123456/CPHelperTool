@@ -321,6 +321,15 @@ object:nil];
  */
 #define CPSystemVersionIs7 [CPSystemUitil isSystemVersionIs7]
 
+/**
+ *  打开手电筒
+ */
+#define CPOpenFlashlight [CPSystemUitil openFlashlight]
+
+/**
+ *  关闭手电筒
+ */
+#define CPCloseFlashlight [CPSystemUitil closeFlashlight]
 
 #define WEAKSELF typeof(self) __weak weakSelf = self;
 #define STRONGSELF typeof(weakSelf) __strong strongSelf = weakSelf;

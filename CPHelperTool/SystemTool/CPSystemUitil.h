@@ -100,4 +100,9 @@
  */
 +(BOOL)isSystemVersionIs7;
 
+/** 打开手电筒 */
++ (void)openFlashlight;
+/** 关闭手电筒 */
++ (void)closeFlashlight;
+
 @end
