@@ -5,6 +5,8 @@
 
 1.0.4 新增打开/关闭手电筒
 
+1.0.3 移除关联AFNetworking Masonry SDWebImage
+
 1.0.2 新增关联AFNetworking Masonry SDWebImage
 
 1.0.1 新增10进制和16进制互相转换的方法
