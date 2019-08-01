@@ -348,4 +348,75 @@
     }
 }
 
++ (NSString *)getUUID {
+    NSString * strUUID = (NSString *)[CPSystemUitil loadKeyChain:CPSystemAppBundleIdentifier];
+    
+    //首次执行该方法时，uuid为空
+    if ([strUUID isEqualToString:@""] || !strUUID){
+        //生成一个uuid的方法
+        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+        
+        strUUID = (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault, uuidRef));
+        
+        //将该uuid保存到keychain
+        [CPSystemUitil saveKeyChain:CPSystemAppBundleIdentifier data:strUUID];
+    }
+    return strUUID;
+}
+
++ (void)saveKeyChain:(NSString *)service data:(id)data
+{
+    //Get search dictionary
+    NSMutableDictionary *keychainQuery = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                          (id)kSecClassGenericPassword,(id)kSecClass,
+                                          service, (id)kSecAttrService,
+                                          service, (id)kSecAttrAccount,
+                                          (id)kSecAttrAccessibleAfterFirstUnlock,(id)kSecAttrAccessible,
+                                          nil];
+    //Delete old item before add new item
+    SecItemDelete((CFDictionaryRef)keychainQuery);
+    //Add new object to search dictionary(Attention:the data format)
+    [keychainQuery setObject:[NSKeyedArchiver archivedDataWithRootObject:data] forKey:(id)kSecValueData];
+    //Add item to keychain with the search dictionary
+    SecItemAdd((CFDictionaryRef)keychainQuery, NULL);
+}
+
++ (id)loadKeyChain:(NSString *)service
+{
+    id ret = nil;
+    NSMutableDictionary *keychainQuery = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                          (id)kSecClassGenericPassword,(id)kSecClass,
+                                          service, (id)kSecAttrService,
+                                          service, (id)kSecAttrAccount,
+                                          (id)kSecAttrAccessibleAfterFirstUnlock,(id)kSecAttrAccessible,
+                                          nil];
+    //Configure the search setting
+    //Since in our simple case we are expecting only a single attribute to be returned (the password) we can set the attribute kSecReturnData to kCFBooleanTrue
+    [keychainQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnData];
+    [keychainQuery setObject:(id)kSecMatchLimitOne forKey:(id)kSecMatchLimit];
+    CFDataRef keyData = NULL;
+    if (SecItemCopyMatching((CFDictionaryRef)keychainQuery, (CFTypeRef *)&keyData) == noErr) {
+        @try {
+            ret = [NSKeyedUnarchiver unarchiveObjectWithData:(__bridge NSData *)keyData];
+        } @catch (NSException *e) {
+            NSLog(@"Unarchive of %@ failed: %@", service, e);
+        } @finally {
+        }
+    }
+    if (keyData)
+        CFRelease(keyData);
+    return ret;
+}
+
++ (void)deleteKeyChain:(NSString *)service
+{
+    NSMutableDictionary *keychainQuery = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                          (id)kSecClassGenericPassword,(id)kSecClass,
+                                          service, (id)kSecAttrService,
+                                          service, (id)kSecAttrAccount,
+                                          (id)kSecAttrAccessibleAfterFirstUnlock,(id)kSecAttrAccessible,
+                                          nil];
+    SecItemDelete((CFDictionaryRef)keychainQuery);
+}
+
 @end

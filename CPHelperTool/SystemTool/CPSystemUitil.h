@@ -105,4 +105,12 @@
 /** 关闭手电筒 */
 + (void)closeFlashlight;
 
+/**获取UUID */
++(NSString *)getUUID;
+/**数据存入钥匙串*/
++ (void)saveKeyChain:(NSString *)service data:(id)data;
+/**读取钥匙串数据*/
++ (id)loadKeyChain:(NSString *)service;
+/**删除钥匙串数据*/
++ (void)deleteKeyChain:(NSString *)service;
 @end

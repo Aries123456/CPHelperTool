@@ -354,3 +354,11 @@ object:nil];
 #define NSLog(format, ...)
 #endif
 
+/**获取UUID */
+#define CPGetUUID [CPSystemUitil getUUID]
+/**数据存入钥匙串*/
+#define CPSaveKeyChain(service,data) [CPSystemUitil saveKeyChain:service data:data]
+/**读取钥匙串数据*/
+#define CPLoadKeyChain(service) [CPSystemUitil loadKeyChain:service]
+/**删除钥匙串数据*/
+#define CPDeleteKeyChain(service) [CPSystemUitil deleteKeyChain:service]
